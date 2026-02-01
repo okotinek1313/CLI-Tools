@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-CONFIG_FILE="$HOME/.config/configurator/config.conf"
+CONFIG_FILE="$HOME/.config/xr/config.conf"
 
 if [[ ! -f "$CONFIG_FILE" ]]; then
     echo "Config file does not exist!"
