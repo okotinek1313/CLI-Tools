@@ -14,16 +14,17 @@ if [[ -z "$OPTION" ]]; then
     exit 1
 fi
 
-while IFS='|' read -r cmd shortcut; do
+
+while IFS='|' read -r cmd shortcut <&3; do
+    
     [[ -z "$cmd" || "$cmd" =~ ^# ]] && continue
 
     if [[ "$shortcut" == "$OPTION" ]]; then
         echo "Running: $cmd"
-        # Run the command in a proper interactive shell
-        bash -i -c "$cmd"
+        eval "$cmd"
         exit 0
     fi
-done < "$CONFIG_FILE"
+done 3< "$CONFIG_FILE"
 
 echo "Option not found: $OPTION"
 exit 1
